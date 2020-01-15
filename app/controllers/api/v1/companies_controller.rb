@@ -18,7 +18,7 @@ module Api
         @company = Company.new(company_params)
 
         if @company.save
-          render json: @company, status: :created, location: api_v1_company_url(@company)
+          render json: @company, status: :created, location:  api_v1_companies_url(@company)
         else
           render json: @company.errors, status: :unprocessable_entity
         end
@@ -39,7 +39,7 @@ module Api
 
       private
 
-      def ser_company
+      def set_company
         @company = Company.find(params[:id])
       end
 
