@@ -6,8 +6,7 @@ module Api
 
       def index
         @companies = Company.all
-
-        render json: companies
+        render json: @companies
       end
 
       def show
@@ -26,7 +25,7 @@ module Api
 
       def update
         if @company.update(company_params)
-          render json: @companh
+          render json: @company
         else
           render json: @company.errors, status: :unprocessable_entity
         end

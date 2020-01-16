@@ -82,19 +82,19 @@ export default {
         })
         .catch(error => this.setError(error, 'Cannot create company'))
     },
-    removeArtist (company) {
-      this.$http.secured.delete(`/api/v1/artists/${company.id}`)
+    removeCompany (company) {
+      this.$http.secured.delete(`/api/v1/companies/${company.id}`)
         .then(response => {
           this.companies.splice(this.companies.indexOf(company), 1)
         })
         .catch(error => this.setError(error, 'Cannot delete company'))
     },
-    editArtist (company) {
+    editCompany (company) {
       this.editedCompany = company
     },
-    updateArtist (company) {
+    updateCompany (company) {
       this.editedCompany = ''
-      this.$http.secured.patch(`/api/v1/artists/${company.id}`, { company: { title: company.name } })
+      this.$http.secured.patch(`/api/v1/companies/${company.id}`, { company: { name: company.name } })
         .catch(error => this.setError(error, 'Cannot update company'))
     }
   }
