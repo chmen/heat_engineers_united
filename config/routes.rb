@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         resources :records
       end
       resources :companies
+      resources :company_reviews
       resources :records
     end
   end
