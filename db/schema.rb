@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_13_155415) do
+ActiveRecord::Schema.define(version: 2020_01_18_202549) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 2020_01_13_155415) do
     t.integer "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "company_reviews", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "user_id"
+    t.text "review"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_company_reviews_on_company_id"
+    t.index ["user_id"], name: "index_company_reviews_on_user_id"
   end
 
   create_table "records", force: :cascade do |t|

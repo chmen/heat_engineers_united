@@ -25,7 +25,7 @@
        </div>
 
       <div class="mb-6">
-        <label for="Company" class="label">Company</label>
+        <label for="сompany" class="label">Company</label>
         <select id="company" class="select" v-model="newCompanyReview.company">
           <option disabled value="">Select an Company</option>
           <option :value="company.id" v-for="company in companies" :key="company.id">{{ company.name }}</option>
@@ -39,7 +39,7 @@
     <hr class="border border-grey-light my-6" />
 
     <ul class="list-reset mt-4">
-      <li class="py-4" v-for="companyReview in companyReivews" :key="companyReview.id" :companyReview="companyReview">
+      <li class="py-4" v-for="companyReview in companyReviews" :key="companyReview.id" :companyReview="companyReview">
 
         <div class="flex items-center justify-between flex-wrap">
           <div class="flex-1 flex justify-between flex-wrap pr-4">
@@ -56,7 +56,7 @@
          @click.prevent="removeCompanyReview(companyReview)">Delete</button>
         </div>
 
-        <div v-if="companyReview == editedCompanyReviw">
+        <div v-if="companyReview == editedCompanyReview">
           <form action="" @submit.prevent="updateCompanyReview(companyReview)">
             <div class="mb-6 p-4 bg-white rounded border border-grey-light mt-4">
 
@@ -88,14 +88,14 @@
 
 <script>
 export default {
-  name: 'CompanyReivews',
+  name: 'CompanyReviews',
   data () {
     return {
       companies: [],
-      companyReivews: [],
+      companyReviews: [],
       newCompanyReview: [],
       error: '',
-      editedCompany: ''
+      editedCompanyReview: ''
     }
   },
   created () {
@@ -103,7 +103,7 @@ export default {
       this.$router.replace('/')
     } else {
       this.$http.secured.get('/api/v1/company_reviews')
-        .then(response => { this.companyReivews = response.data })
+        .then(response => { this.companyReviews = response.data })
         .catch(error => this.setError(error, 'Something went wrong'))
 
       this.$http.secured.get('/api/v1/companies')
@@ -116,7 +116,7 @@ export default {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     },
     getCompany (companyReview) {
-      const companyReviewCompanyValues = this.company.filter(company => company.id === companyReview.company_id)
+      const companyReviewCompanyValues = this.companies.filter(company => company.id === companyReview.company_id)
       let company
 
       companyReviewCompanyValues.forEach(function (element) {
@@ -130,7 +130,7 @@ export default {
       if (!value) {
         return
       }
-      this.$http.secured.post('/api/v1/company_reviews/', { companyReview: { review: this.newCompanyReview.review, rating: this.newCompanyReview.rating, company_id: this.newCompanyReview.company } })
+      this.$http.secured.post('/api/v1/company_reviews/', { company_review: { review: this.newCompanyReview.review, rating: this.newCompanyReview.rating, company_id: this.newCompanyReview.company } })
 
         .then(response => {
           this.companyReview.push(response.data)
@@ -145,11 +145,11 @@ export default {
         })
         .catch(error => this.setError(error, 'Cannot delete review'))
     },
-    editedCompanyReviw (companyReview) {
-      this.editedCompanyReviw = companyReview
+    editCompanyReviw (companyReview) {
+      this.editedCompanyReview = companyReview
     },
-    updateCompanyReview (company) {
-      this.editedCompanyReviw = ''
+    updateCompanyReview (companyReview) {
+      this.editedCompanyReview = ''
       this.$http.secured.patch(`/api/v1/company_reviews/${companyReview.id}`, { companyReview: { review: companyReview.review, rating: companyReview.rating, company_id: companyReview.company } })
         .catch(error => this.setError(error, 'Cannot update review'))
     }
