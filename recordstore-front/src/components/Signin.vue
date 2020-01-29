@@ -51,7 +51,7 @@ export default {
       localStorage.csrf = response.data.csrf
       localStorage.signedIn = true
       this.error = ''
-      this.$router.replace('/records')
+      this.$router.replace('/companies')
     },
     signinFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || ''
