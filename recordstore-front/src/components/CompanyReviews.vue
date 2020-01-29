@@ -133,7 +133,7 @@ export default {
       this.$http.secured.post('/api/v1/company_reviews/', { company_review: { review: this.newCompanyReview.review, rating: this.newCompanyReview.rating, company_id: this.newCompanyReview.company } })
 
         .then(response => {
-          this.companyReview.push(response.data)
+          this.companyReviews.push(response.data)
           this.newCompanyReview = ''
         })
         .catch(error => this.setError(error, 'Cannot create review'))
