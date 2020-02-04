@@ -144,12 +144,12 @@ export default {
         })
         .catch(error => this.setError(error, 'Cannot delete review'))
     },
-    editCompanyReviw (companyReview) {
+    editCompanyReview (companyReview) {
       this.editedCompanyReview = companyReview
     },
     updateCompanyReview (companyReview) {
       this.editedCompanyReview = ''
-      this.$http.secured.patch(`/api/v1/company_reviews/${companyReview.id}`, { companyReview: { review: companyReview.review, rating: companyReview.rating, company_id: companyReview.company } })
+      this.$http.secured.patch(`/api/v1/company_reviews/${companyReview.id}`, { company_review: { review: companyReview.review, rating: companyReview.rating, company_id: companyReview.company } })
         .catch(error => this.setError(error, 'Cannot update review'))
     }
   }
