@@ -6,6 +6,7 @@ module Api
 
       def index
         @companies = Company.all
+
         render json: @companies
       end
 
