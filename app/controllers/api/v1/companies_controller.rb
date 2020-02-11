@@ -7,7 +7,9 @@ module Api
       def index
         @companies = Company.all
 
-        render json: @companies
+        serialized_string = CompanySerializer.new(@companies).serialized_json
+
+        render json: serialized_string
       end
 
       def show
