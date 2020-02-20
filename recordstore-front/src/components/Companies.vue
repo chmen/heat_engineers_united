@@ -21,7 +21,7 @@
 
         <div class="flex items-center justify-between flex-wrap">
           <p class="block flex-1 font-mono font-semibold flex items-center ">
-            {{ company.name }}
+            {{ company.attributes.name }}
           </p>
 
           <button class="bg-tranparent text-sm hover:bg-blue hover:text-white text-blue border border-blue no-underline font-bold py-2 px-4 mr-2 rounded"
@@ -60,7 +60,7 @@ export default {
       this.$router.replace('/')
     } else {
       this.$http.secured.get('/api/v1/companies')
-        .then(response => { this.companies = response.data })
+        .then(response => { this.companies = response.data.data })
         .catch(error => this.setError(error, 'Something went wrong'))
     }
   },
