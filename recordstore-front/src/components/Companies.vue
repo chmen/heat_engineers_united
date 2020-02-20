@@ -23,6 +23,9 @@
           <p class="block flex-1 font-mono font-semibold flex items-center ">
             {{ company.attributes.name }}
           </p>
+          <p class="block flex-1 font-mono font-semibold flex items-center ">
+            {{ company.attributes.rating }}
+          </p>
 
           <button class="bg-tranparent text-sm hover:bg-blue hover:text-white text-blue border border-blue no-underline font-bold py-2 px-4 mr-2 rounded"
           @click.prevent="editCompany(company)">Edit</button>
