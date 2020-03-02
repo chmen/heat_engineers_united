@@ -106,7 +106,7 @@ export default {
         .catch(error => this.setError(error, 'Something went wrong'))
 
       this.$http.secured.get('/api/v1/companies')
-        .then(response => { this.companies = response.data })
+        .then(response => { this.companies = response.data.data })
         .catch(error => this.setError(error, 'Something went wrong'))
     }
   },
